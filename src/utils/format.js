@@ -8,4 +8,4 @@ export const safeUrl = value => {
   try { const url = new URL(value); return ['http:', 'https:'].includes(url.protocol) ? url.href : '' } catch { return '' }
 }
 export const hostname = value => { const url = safeUrl(value); return url ? new URL(url).hostname : '链接暂不可用' }
-export const excerpt = post => post.summary || (post.content || '').replace(/[#*`>\[\]]/g, '').slice(0, 120)
+export const excerpt = post => post.summary || (post.content || '').replace(/[#*`>\[\]]/g, '').slice(0, 120) || '打开文章，读读这个故事。'

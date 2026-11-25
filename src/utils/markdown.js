@@ -1,10 +1,17 @@
-// HTML is escaped before formatting. Only HTTP(S) links are emitted.
+import { imageUrl } from './images.js'
+
+// HTML is escaped before formatting. Links use HTTP(S); images also accept uploaded API paths.
 const escapeHtml = value => String(value).replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;').replaceAll("'", '&#39;')
 function inline(value) {
   const tokens = []
   const token = html => { tokens.push(html); return `\u0000${tokens.length - 1}\u0000` }
-  let text = escapeHtml(value.replaceAll('\u0000', ''))
-  text = text.replace(/`([^`]+)`/g, (_, code) => token(`<code>${code}</code>`))
+  let text = value.replaceAll('\u0000', '')
+  text = text.replace(/`([^`]+)`/g, (_, code) => token(`<code>${escapeHtml(code)}</code>`))
+  text = text.replace(/!\[([^\]\r\n]*)\]\(([^\s)]+)\)/g, (match, label, path) => {
+    const url = imageUrl(path)
+    return url ? token(`<img src="${escapeHtml(url)}" alt="${escapeHtml(label)}" loading="lazy" decoding="async">`) : token(escapeHtml(match))
+  })
+  text = escapeHtml(text)
   text = text.replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, (_, label, url) => token(`<a href="${url}" target="_blank" rel="noopener noreferrer">${label}</a>`))
   text = text.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>').replace(/\*([^*]+)\*/g, '<em>$1</em>')
   return text.replace(/\u0000(\d+)\u0000/g, (_, id) => tokens[Number(id)] || '')

@@ -1,0 +1,88 @@
+/* Shared minimal layout for the blog and administration pages. */
+.site-shell{max-width:1160px}
+.site-header{height:76px}
+.brand{font-size:23px;letter-spacing:0;gap:9px}
+.brand-mark{width:30px;height:32px;border:0;transform:none}
+.brand-mark svg{width:25px;height:25px;transform:none}
+.main-nav{margin-left:0;gap:28px}
+.main-nav a.active:after{bottom:15px;height:2px}
+.site-footer{min-height:72px;padding:22px 0;margin-top:32px}
+.site-footer small{margin-left:0}
+.home-layout{padding-top:36px;gap:40px}
+.home-layout.without-sidebar{grid-template-columns:minmax(0,1fr)}
+.articles-section{margin-top:0}
+.section-heading{margin-bottom:24px}
+.section-heading h2{font-size:24px;letter-spacing:0}
+.article-list-heading{gap:16px;flex-wrap:wrap}
+.article-list-actions{display:flex;align-items:center;gap:16px;margin-left:auto}
+.article-list-actions>.button{flex-shrink:0}
+.write-article-link{min-height:36px;padding:7px 14px;gap:8px;border-radius:20px;border-color:#dfe7df;background:var(--green-light);color:var(--green-dark);font-size:12px;font-weight:500;white-space:nowrap}
+.write-article-link>svg{flex-shrink:0}
+.write-article-link:hover{background:#e6eee6;border-color:#bdcdbf}
+.write-article-link:focus-visible{outline:2px solid var(--green);outline-offset:3px}
+.article-filter-actions{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.article-filter-actions>.app-select{min-width:105px;font-size:11px}
+.article-filter-actions>.layout-switch{flex-shrink:0}
+@media(max-width:480px){.article-list-filters{flex-wrap:wrap}.article-list-filters>.search-field{flex-basis:100%}.article-filter-actions{margin-left:auto;gap:7px}.article-filter-actions>.app-select{min-width:94px;font-size:10px}}
+.category-tabs{gap:20px;overflow-x:auto;overflow-y:hidden;white-space:nowrap;scrollbar-width:none}
+.category-tabs::-webkit-scrollbar{display:none}
+.filter-row{margin:18px 0 22px}
+.active-filter-slot{margin-bottom:12px}
+.panel,.post-card,.friend-card,.auth-card,.article-paper,.editor-paper,.admin-stat-card{box-shadow:none;border-radius:8px}
+.collection-frame .post-card{height:240px}
+.collection-frame .post-card.has-cover{height:400px}
+.collection-frame .card-cover-link{flex-basis:170px}
+.collection-frame .card-body h3{height:auto;max-height:62px;margin-top:12px;margin-bottom:10px}
+.collection-frame .card-body>p{height:auto;max-height:43px}
+.collection-frame .list-layout .post-card{height:190px;display:block}
+.collection-frame .list-layout .post-card.has-cover{display:grid;grid-template-columns:180px minmax(0,1fr)}
+.collection-frame .list-layout .card-body{height:100%}
+.card-body{padding:22px}
+.card-body h3{font-size:18px;letter-spacing:0}
+.card-footer{padding-top:16px}
+.card-footer>div{margin-left:auto}
+.card-footer .read-arrow{margin-left:8px}
+.sidebar{display:flex;flex-direction:column;gap:28px}
+.sidebar>.profile-card{height:auto;width:100%;padding-top:24px;background:#fff;border-color:var(--border)}
+.profile-avatar{margin:0 auto;width:54px;height:54px;border:0}
+.profile-content{padding:16px 20px 20px}
+.profile-content h3{height:auto;justify-content:center}
+.profile-content>p{height:auto;max-height:100px;margin-top:8px}
+.profile-stats{margin-top:20px;padding-top:18px}
+.profile-stats b{font-family:inherit;font-size:18px}
+.sidebar-section{height:auto;max-height:none;margin:0;width:100%}
+.sidebar-section h3{font-size:13px;margin-bottom:12px}
+.sidebar-categories,.tag-cloud{flex:initial;max-height:400px;scrollbar-width:thin}
+.sidebar-categories{gap:5px}
+.category-symbol{background:var(--surface-soft)!important;color:var(--secondary)!important}
+.tag-cloud>button,.tag-cloud>a{background:var(--surface-soft);border-color:var(--border)}
+.sidebar-pagination{height:auto;margin-top:12px}
+.empty-state h2,.empty-state h3{font-size:18px}
+.page-heading{padding:36px 0 28px}
+.page-heading h1{font-size:26px;letter-spacing:0}
+.auth-layout{display:block;max-width:400px;margin:64px auto}
+.auth-card{padding:30px}
+.auth-card h2{font-size:24px;margin:0 0 26px}
+.auth-card form{margin-top:0}
+.auth-switch{font-size:12px}
+.about-page{max-width:680px;min-height:60vh;padding:40px 0}
+.about-page>h1{font-size:26px;margin-bottom:32px}
+.about-profile{margin-bottom:32px}
+.about-profile img{width:64px;height:64px;border-radius:50%;object-fit:cover;margin-bottom:16px}
+.about-profile h2{font-size:20px;margin-bottom:12px}
+.about-profile p{color:var(--secondary);white-space:pre-wrap;overflow-wrap:anywhere}
+.article-header h1{letter-spacing:0}
+.article-tags:empty{display:none}
+.editor-page .page-heading h1{font-size:26px}
+.editor-settings h3{font-size:14px}
+.admin-page-heading h1{font-size:25px;margin:0;letter-spacing:0}
+.admin-brand{font-size:23px;letter-spacing:0;padding-bottom:30px}
+.admin-panel>header{margin-bottom:18px}
+.admin-stat-card>strong{font-family:inherit;font-size:30px;font-weight:600}
+.inline-error{padding:0;background:none;border:0;margin:16px 0}
+.retry-action{margin-bottom:16px}
+@media(max-width:850px){.home-layout{gap:24px}.collection-frame .card-body{padding:18px}.collection-frame .post-card{height:250px}.collection-frame .post-card.has-cover{height:410px}}
+@media(max-width:700px){.home-layout{padding-top:28px;grid-template-columns:1fr}.sidebar{border-top:1px solid var(--border);padding-top:24px}.sidebar>.profile-card{max-width:400px}.sidebar-section{max-height:280px}.section-heading h2{font-size:23px}.site-footer small{width:auto}}
+@media(max-width:480px){.site-header{height:68px}.main-nav{top:67px}.brand{font-size:22px}.home-layout{padding-top:24px}.collection-frame .post-card{height:230px}.collection-frame .post-card.has-cover{height:420px}.collection-frame .card-cover-link{flex-basis:190px}.collection-frame .card-body h3{height:auto;max-height:62px}.collection-frame .card-body>p{height:auto;max-height:43px}.collection-frame .list-layout .post-card{height:210px}.collection-frame .list-layout .post-card.has-cover{grid-template-columns:105px minmax(0,1fr)}.auth-layout{margin:36px auto}.auth-card{padding:26px 22px}.page-heading h1,.editor-page .page-heading h1{font-size:24px}}
+
+@media(max-width:700px){.sidebar-section{max-height:none}.sidebar-categories,.tag-cloud{max-height:280px}}

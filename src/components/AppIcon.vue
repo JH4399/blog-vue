@@ -1,6 +1,11 @@
 <script setup>
 defineProps({ name: String, size: { type: [Number, String], default: 20 } })
 const paths = {
+  image: 'M3 3h18v18H3V3Zm0 14 6-6 4 4 3-3 5 5M8 7h.01',
+  users: 'M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2m20 0v-2a4 4 0 0 0-3-3.87M13 3.13a4 4 0 0 1 0 7.75M13 7a4 4 0 1 1-8 0 4 4 0 0 1 8 0Z',
+  heart: 'M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z',
+  refresh: 'M20 7v5h-5M4 17v-5h5m-4.5-4a8 8 0 0 1 13.2-3L20 8M4 16l2.3 3A8 8 0 0 0 19.5 16',
+  settings: 'M12 8a4 4 0 1 1 0 8 4 4 0 0 1 0-8Zm-2-6h4l1 3 3 1 3 1v4l-2 2-1 3-1 3h-4l-2-2-3-1-3-1v-4l2-2 1-3 2-4Z',
   logout: 'M9 4H4v16h5m5-13 5 5-5 5m-6-5h12',
   leaf: 'M20 4C11 2 3 6 4 13c1 7 11 8 14 1 1-3 1-6 2-10ZM5 19 15 9M8 16v-5m3 2h5',
   arrow: 'M4 12h15m-6-6 6 6-6 6', chevron: 'm9 5 7 7-7 7', back: 'M20 12H5m6-6-6 6 6 6',

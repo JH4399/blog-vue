@@ -1,8 +1,25 @@
 <script setup>
-import { RouterLink } from 'vue-router'
 import Icon from '../components/AppIcon.vue'
 import { useBlogStore } from '../stores/blog'
+import ListPagination from '../components/ListPagination.vue'
+import CollectionFrame from '../components/CollectionFrame.vue'
 import { safeUrl, hostname } from '../utils/format'
 const blog = useBlogStore()
 </script>
-<template><div class="standard-page"><div class="page-heading"><div class="eyebrow">GOOD PLACES, GOOD COMPANY</div><h1>在别处，<span class="serif-emphasis">遇见同频。</span></h1><p>互联网很大，很高兴在这些角落与你相遇。</p></div><div v-if="!blog.initialized" class="empty-state" aria-busy="true"><span class="spinner"></span></div><div v-else-if="blog.publicError" class="inline-error">{{ blog.publicError }}<button @click="blog.loadPublic()">重新加载</button></div><div class="links-grid"><a v-for="link in blog.links" :key="link.id" :href="safeUrl(link.url) || undefined" :aria-disabled="!safeUrl(link.url)" target="_blank" rel="noopener noreferrer" class="friend-card"><span class="friend-avatar">{{ link.name?.slice(0, 1) }}<img v-if="safeUrl(link.logo)" :src="safeUrl(link.logo)" alt="" loading="lazy" @error="$event.target.style.display = 'none'"></span><div><h2>{{ link.name }}<Icon name="external" :size="16" /></h2><p>{{ link.description || '去看看这个有趣的角落。' }}</p><small>{{ hostname(link.url) }}</small></div></a></div><div v-if="blog.initialized && !blog.links.length && !blog.publicError" class="empty-state panel"><Icon name="link" :size="34" /><h2>好邻居，正在路上。</h2><p>友情链接会陆续出现在这里。</p></div><section class="friend-note"><Icon name="coffee" :size="28" /><div><h3>以文字为邻，以热爱相识。</h3><p>每一个认真记录的小站，都值得被看见。</p></div><RouterLink to="/about" class="text-link">认识拾光 <Icon name="arrow" :size="17" /></RouterLink></section></div></template>
+<template>
+  <div class="standard-page">
+    <div class="page-heading"><h1>友链</h1></div>
+    <CollectionFrame label="友情链接列表">
+      <div v-if="!blog.initialized || blog.publicLoading.links" class="empty-state" aria-busy="true"><span class="spinner"></span><p>正在加载友链…</p></div>
+      <div v-else-if="blog.publicErrors.links" class="empty-state"><button class="button secondary" @click="blog.loadPublicResource('links', blog.publicPagination.links.page)">重新加载</button></div>
+      <div v-else-if="blog.links.length" class="links-grid">
+        <a v-for="link in blog.links" :key="link.id" :href="safeUrl(link.url) || undefined" :aria-disabled="!safeUrl(link.url)" target="_blank" rel="noopener noreferrer" class="friend-card">
+          <span class="friend-avatar">{{ link.name?.slice(0, 1) }}<img v-if="safeUrl(link.logo)" :src="safeUrl(link.logo)" alt="" loading="lazy" @error="$event.target.style.display = 'none'"></span>
+          <div><h2>{{ link.name }}<Icon name="external" :size="16" /></h2><p v-if="link.description">{{ link.description }}</p><small>{{ hostname(link.url) }}</small></div>
+        </a>
+      </div>
+      <div v-else class="empty-state panel"><Icon name="link" :size="34" /><p>暂无友链</p></div>
+      <template #footer><ListPagination v-if="!blog.demo && blog.publicPagination.links.total" :pagination="blog.publicPagination.links" :busy="blog.publicLoading.links" @change="blog.loadPublicResource('links', $event)" /></template>
+    </CollectionFrame>
+  </div>
+</template>
